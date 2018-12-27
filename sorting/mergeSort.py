@@ -143,6 +143,7 @@ left and right split. It takes two paramaters left and right.
         else:
             result.append(right[0])
             right.pop(0)
+            #not using the else statement allows us to capature those values which are also equal. 
     # end of while loop
     # check if there are elements still in left if so add to result
     if left:
@@ -177,3 +178,5 @@ ordered_list3 = merge_sort(unordered_list3)
 print(ordered_list1)
 print(ordered_list2)
 print(ordered_list3)
+
+
