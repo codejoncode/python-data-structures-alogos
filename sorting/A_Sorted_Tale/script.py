@@ -3,6 +3,7 @@ import sorts
 
 bookshelf = utils.load_books('C:/Users/Jonathan/LambdaSchoolProjects/python-data-structures-alogos/sorting/A_Sorted_Tale/books_small.csv')
 bookshelf_v1 = bookshelf.copy()
+bookshelf_v2 = bookshelf.copy()
 
 def by_title_ascending (book_a, book_b):
     """
@@ -24,6 +25,8 @@ def by_author_ascending (book_a, book_b):
 sort_1 = sorts.bubble_sort(bookshelf_v1, by_title_ascending)
 sort_2 = sorts.bubble_sort(bookshelf_v1, by_author_ascending)
 
-for book in sort_2:
+sorts.quicksort(bookshelf_v2, 0, len(bookshelf)-1, by_author_ascending)
+
+for book in bookshelf_v2:
     print(book['author'])
 #end of for loop. 
