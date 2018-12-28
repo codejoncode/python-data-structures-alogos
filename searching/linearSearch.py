@@ -24,4 +24,31 @@ Worse case Performance   target is at the end of the list,   or target does not 
 Average Case performance  O(n/2) which is O(n)
 
 Linear search runs in linear time. 
+
+Pseduo code 
+
+# For each element in the search_list
+    # if element equal target value then
+       # return its index
+# if element is not found then 
+    # raise a ValueError
 """
+
+def linear_search(search_list, target_value):
+    """
+    linear search has O(N) run time complexity in the worse case
+    searches for target returns index of target if found else  
+    raises ValueError target not in list. 
+    """
+    for index in range(len(search_list)):
+        if search_list[index] == target_value:
+            return index
+    raise ValueError("{0} not in list".format(target_value))
+    #Raising our own error explicitly. 
+#end of linear_search function 
+
+values = [54,22,46,99]
+
+print(linear_search(values, 22))
+# print(linear_search(values, 112))
+#uncomment this^ and a valueError will occur purposely because the value isnot in the list. 
