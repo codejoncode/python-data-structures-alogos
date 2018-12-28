@@ -58,4 +58,4 @@ try:
     print(linear_search(values, 112))
 except ValueError as error_message:
     print("{0}".format(error_message))
-#uncomment this^ and a valueError will occur purposely because the value isnot in the list. 
+ 
