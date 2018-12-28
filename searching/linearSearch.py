@@ -49,6 +49,13 @@ def linear_search(search_list, target_value):
 
 values = [54,22,46,99]
 
-print(linear_search(values, 22))
-# print(linear_search(values, 112))
+try:
+    print(linear_search(values, 22))
+except ValueError as error_message:
+    print("{0}".format(error_message))
+# 
+try:
+    print(linear_search(values, 112))
+except ValueError as error_message:
+    print("{0}".format(error_message))
 #uncomment this^ and a valueError will occur purposely because the value isnot in the list. 
