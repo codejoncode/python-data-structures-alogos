@@ -173,3 +173,18 @@ def sumToOne (n):
 #end of funciton 
 
 print(sumToOne(7))
+
+def factorial(n):
+    """
+    returns the product of every integer from 1 up to the input.
+    If the input is less than 2 return 1 = base case. 
+    A stack overflow will be produced with really large numbers as input. 
+    """
+    if n < 2: #base case
+        return 1
+    else:
+        return n * factorial(n-1)
+    
+#end of function 
+
+print(factorial(12)) 
