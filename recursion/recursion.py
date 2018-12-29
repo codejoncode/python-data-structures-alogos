@@ -155,3 +155,21 @@ def sum_to_one(n):
         result += return_value["n_value"]
 
     return result, call_stack
+
+def sumToOne (n):
+    """
+    Given a number as input sums every number from 1 to the given input. 
+    Uses recursion. 
+    No call stack or execution context variables because this is already done under the hood. 
+    """
+    #start by creating base case  
+    if n == 1: 
+        return n
+    #recursive step. 
+    else:
+        print("Recursing with input: {0}".format(n))
+        return n + sumToOne(n-1)
+    
+#end of funciton 
+
+print(sumToOne(7))
