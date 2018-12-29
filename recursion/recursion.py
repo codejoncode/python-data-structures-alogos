@@ -178,7 +178,11 @@ def factorial(n):
     """
     returns the product of every integer from 1 up to the input.
     If the input is less than 2 return 1 = base case. 
-    A stack overflow will be produced with really large numbers as input. 
+    A stack overflow will be produced with really large numbers as input.
+    Recursion has costs that iteration doesn't.   Every recursive call spends time on the call stack. 
+    eventually there is no room left. 
+
+    Recursion reduces the lines of code needed.   The Zen of Python states beautiful is better than ugly.  
     """
     if n < 2: #base case
         return 1
@@ -188,3 +192,199 @@ def factorial(n):
 #end of function 
 
 print(factorial(12)) 
+
+
+"""
+The next function will implement  a power set.   A power set is a list of all subsets of the values in a list. 
+
+[a, b, c]
+
+a b c 
+a b 
+a c 
+a 
+b c 
+b 
+c 
+
+producing subsets requires a runtime of at least O(2 ^ N) we won't ever do better than that because a set of N elements creates a power set of 2 ^ N elements. 
+
+Binary, a number system of base 2, can represent 2^N numbers for N binary digits. 
+
+# 1 binary digit, 2 numbers
+# 0 in binary
+0
+# 1 in binary
+1
+
+# 2 binary digits, 4 numbers
+# 00 => 0
+# 01 => 1
+# 10 => 2
+# 11 => 3
+
+The iterative approach uses this insight for a very clever solution by including an element in the subset if its "binary digit" is 1.
+
+set = ['a', 'b', 'c']
+binary_number = "101"
+# produces the subset ['a', 'c']
+# 'b' is left out because its binary digit is 0
+That process is repeated for all O(2^N) numbers!
+
+"""
+
+def power_set_iterative(set):
+  """
+  produces power sets  A power set is a list of all subsets of the values in a list. 
+
+  """
+  power_set_size = 2**len(set)
+  result = []
+
+  for bit in range(0, power_set_size):
+    sub_set = []
+    for binary_digit in range(0, len(set)):
+      if((bit & (1 << binary_digit)) > 0):
+        sub_set.append(set[binary_digit])
+    result.append(sub_set)
+  return result
+
+def power_set(my_list):
+    """
+    produces power sets  A power set is a list of all subsets of the values in a list. 
+    base case will be once the list is empty. 
+    """
+    # base case: an empty list
+    if len(my_list) == 0:
+        return [[]]
+    # recursive step: subsets without first element
+    power_set_without_first = power_set(my_list[1:])
+    # subsets with first element
+    with_first = [ [my_list[0]] + rest for rest in power_set_without_first ]
+    # return combination of the two
+    return with_first + power_set_without_first
+#end of function 
+  
+universities = ['MIT', 'UCLA', 'Stanford', 'NYU']
+power_set_of_universities = power_set(universities)
+
+for sub_set in power_set_of_universities:
+    print(sub_set)
+#end of for loop. 
+
+def flatten(my_list):
+    """
+    Uses recursion to flatten an array. 
+    """
+    result = []
+    for lst in my_list:
+        #conditional recursive step. Check if lst is a list. 
+        if isinstance(lst, list):
+            print("List found!")
+            flat_list = flatten(lst)
+            result += flat_list
+        else:
+            result.append(lst)
+    return result 
+#end of function. 
+
+
+planets = ['mercury', 'venus', ['earth'], 'mars', [['jupiter', 'saturn']], 'uranus', ['neptune', 'pluto']]
+print(flatten(planets))
+
+
+def fibonacci (n):
+    """
+    Using recursion on multiple 
+    Fibonacci numbers are the sum of the previous two fibonacci numbers. 
+    The base case will be  if  we receive 0 and 1   since this is the first two fibonacci numbers. 
+    fibonacci(3) == fibonacci(1) + fibonacci(2)
+    runtime  O(2^N)
+    """
+    if n == 1: 
+        return 1
+    if n == 0: 
+        return 0 
+    # recursive step   
+    return fibonacci(n-1) + fibonacci(n-2)
+    
+# end of function 
+
+fibonacci(5)
+def sum_digits(n):
+  """
+  recursive function to sum the individual digits of a number. 
+  """
+  if n < 10:
+    return n
+  else:
+    last_digit = n % 10
+    # What argument is every digit except the last?
+    return last_digit + sum_digits(n //10)
+#end of function 
+sum_digits(12)
+# 3
+sum_digits(194)
+# 14
+"""
+Data structures can also be recursive.  
+Trees are a recursive data structure because their definition is self-referential. A tree is a data structure which contains a piece of data and references
+to other trees.  A tree can be both parent and child. We're going to write a recursive function that builds a special type of tree: binary search tree: 
+
+Binary search trees: 
+Reference two children at most per node. 
+the left search child of the tree must contain a value lesser than its parent. 
+the right child of the tree must contain a value greater than its parent. 
+
+Trees are an abstract data type. 
+
+bst_tree_node = {"data": 42}
+bst_tree_node["left_child"] = {"data": 36}
+bst_tree_node["right_child"] = {"data": 73}
+
+bst_tree_node["data"] > bst_tree_node["left_child"]["data"]
+# True
+bst_tree_node["data"] < bst_tree_node["right_child"["data"]
+# True
+
+
+Our high-level strategy before moving through the checkpoints.
+
+base case: the input list is empty
+Return "No Child" to represent the lack of node
+recursive step: the input list must be divided into two halves
+Find the middle index of the list
+Store the value located at the middle index
+Make a tree node with a "data" key set to the value
+Assign tree node's "left child" to a recursive call using the left half of the list
+Assign tree node's "right child" to a recursive call using the right half of the list
+Return the tree node
+"""
+
+def build_bst(my_list):
+    """
+    Using recursion on binary tree data structure. 
+    """
+    if not my_list: #base case
+        return "No Child"
+    
+    #declare middle index of the my_list 
+    middle_index = len(my_list) // 2 
+    # declare the middle idx value 
+    middle_value = my_list[middle_index]
+    print("Middle index: {0}".format(middle_index))
+    print("Middle value: {0}".format(middle_value))
+    
+    tree_node = {"data": middle_value}
+    tree_node["left_child"] = build_bst(my_list[ : middle_index])
+    tree_node["right_child"] = build_bst(my_list[middle_index + 1 : ])
+
+    return tree_node
+
+    
+#end of function 
+
+sorted_list = [12, 13, 14, 15, 16]
+binary_search_tree = build_bst(sorted_list)
+print(binary_search_tree)
+
