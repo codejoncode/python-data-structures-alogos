@@ -145,4 +145,13 @@ def sum_to_one(n):
         print(call_stack)
     print("BASE CASE REACHED")
 
+    """
+    After the values are added to the call stack. Once the base case is reached   the excution contexts stored are popped off the call stack. 
+    """
+    while call_stack:
+        return_value = call_stack.pop()
+        print(return_value)
+        print("Adding {0} to result of {1}".format(return_value["n_value"], result))
+        result += return_value["n_value"]
+
     return result, call_stack
