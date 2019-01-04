@@ -1,0 +1,49 @@
+A data structures main ultility is allowing for data to be represented in a way that resembles the way people will use that data. -(codecademy)
+
+
+
+
+Basically data structures are what you create to make it easier to work with your algorithm or so that your users can better access the data.  
+
+What makes a data structure easier to work with is accessiblity and speed.  A data structure that takes O(N) time or more to access an element 
+may not be condidered easy to access. Especially, due to if the data structure is desgined to be more efficient it can allow you to access 
+elements at O(1) speed.  Yes  big O notation doesn't stop at algorithms but is used within data structures, searching for an element removing 
+from an element and adding elements all come at a cost of time.  The decesion of whether or not it is worth it comes at the idea of balance.   
+
+Some data structures will increase space while providing fast speeds and vice versa.  Everything has a cost,  and often speed will result in more space 
+and vice versa. 
+
+
+Maps 
+
+To map involves creating a relation between two parts of information. Key and Value.  For success each key must be assigned to one value.  
+The most basic map can be seen with dictionary {key: value}  The value can be an array or a dictionary itself. Again it can be very fast 
+when it comes to accessing the data desired however  the cost will be space.  
+
+Hash Map 
+
+Sequence doesn't matter  only the input.   In order to tell the computer what we desire we would use an array or a list (term used in Python). 
+We use a list because it allows us to index elements.  We will use function that will turn our string input into a number. This number will translate
+the index where the information is.   Honestly this is alot like how the Python dictionary or Javascript Objects work.  Hashing functions can be useful for 
+many data structures for now we only care that it will return a number that we can use to index the position of our value.   
+
+How the hash function works...
+
+Given a string or some type of data the function will return a number index. Important for the hash function is to know the exact size of the array we are going to use. 
+The reason why this is important is if we only have 4 positions in the array we don't want to return an index of 5. This wouldn't do us no good   likely to lead to a undefined or index range 
+error of some sort. To do this we will use the modolu of the array size.
+
+How to Write a Hash Function.. 
+
+Hash function should be simple, considering it will be used to access add or remove elements.   If it is too complex it will slow down the performance. 
+The hash function should be able to take any type due to there are many types that one may choose to work with. When using numbers if it is less than the array size  nothing 
+has to be done.  Where strings  use the fact that they are represented as internal numerical data. For this type a shift of the data bitwise can produce a number for a string. 
+
+The location in storage at the index produced by the hash is called a hash bucket. 
+The key is provided in the call of the hash function. The function  will perform modulo arithmetic to turn the hash into an array index. 
+
+
+Collisions 
+
+Collisions can occur and will occur when two different keys return the same index. How will we handle this?   There is a technieuqe called separate chaining   which inovles updating the data structure.
+Instead of just getting to an value the value maybe a linked list.
